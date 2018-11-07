@@ -1,7 +1,7 @@
 FROM alpine
-MAINTAINER Rafael Römhild <rafael@roemhild.de>
+MAINTAINER Matias Vidal <m@m01.cl>
 
-ENV VERSION 1.0.0rc3
+ENV VERSION master
 
 # Install requirements
 RUN apk add --update-cache \
@@ -22,7 +22,7 @@ RUN apk add --update-cache \
 
 # Get Mailpile from github
 RUN git clone https://github.com/mailpile/Mailpile.git \
-        --branch $VERSION --single-branch --depth=1
+        --branch $VERSION --single-branch --recursive
 
 WORKDIR /Mailpile
 
