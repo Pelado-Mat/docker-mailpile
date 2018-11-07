@@ -53,6 +53,9 @@ RUN pip install --user -r requirements.txt
 # Initial Mailpile setup
 RUN ./mp setup
 
+# set the http_path
+RUN ./mp set sys.http_path /mailpile
+
 CMD ./mp --www=0.0.0.0:33411 --wait
 EXPOSE 33411
 
