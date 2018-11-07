@@ -10,8 +10,8 @@ Runs as a non-root user!
 docker run -d --name mailpile -p 33411:33411 m01cl/mailpile
 ```
 
-Bind volume `/home/u/.local/share/Mailpile` and `/home/u/.gnupg` for persistent storage:
+Bind volume `/home/mailpile/.local/share/Mailpile` and `/home/mailpile/.gnupg` for persistent storage:
 
 ```
-docker run -d --name mailpile -p 33411:33411 -v /some/local/path:/root/.local/share/Mailpile -v /another/local/path:/home/u/.gnupg m01cl/mailpile
+docker run -d --name mailpile -p 33411:33411 -v /some/local/path:/home/mailpile/.local/share/Mailpile -v /another/local/path:/home/mailpile/.gnupg m01cl/mailpile
 ```
