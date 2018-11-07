@@ -1,4 +1,4 @@
-FROM alpine
+FROM alpine:latest
 MAINTAINER Matias Vidal <m@m01.cl>
 
 ENV VERSION master
@@ -20,6 +20,26 @@ RUN apk add --update-cache \
         py-cryptography \
         ca-certificates
 
+## CREATE APP USER ##
+
+# Create the home directory for the new app user.
+RUN mkdir -p /home/mailpile
+
+# Create an app user so our program doesn't run as root.
+RUN groupadd -r mailpile &&\
+    useradd -r -g mailpile -d /home/mailpile -s /sbin/nologin -c "MailPile user" mailpile
+
+# Set the home directory to our app user's home.
+ENV HOME=/home/mailpile
+
+WORKDIR $HOME
+
+# Chown all the files to the app user.
+RUN chown -R mailpile:mailpile $HOME
+
+# Change to the app user.
+USER mailpile
+
 # Get Mailpile from github
 RUN git clone https://github.com/mailpile/Mailpile.git \
         --branch $VERSION --single-branch --recursive
@@ -35,5 +55,5 @@ RUN ./mp setup
 CMD ./mp --www=0.0.0.0:33411 --wait
 EXPOSE 33411
 
-VOLUME /root/.local/share/Mailpile
-VOLUME /root/.gnupg
+VOLUME /home/mailpile/.local/share/Mailpile
+VOLUME /home/mailpile/.gnupg
