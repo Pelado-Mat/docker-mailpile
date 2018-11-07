@@ -1,5 +1,5 @@
 FROM alpine:latest
-MAINTAINER Matias Vidal <m@m01.cl>
+MAINTAINER Matias Vidal <matias@m01.cl>
 
 ENV VERSION master
 
