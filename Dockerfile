@@ -45,7 +45,7 @@ USER mailpile
 RUN git clone https://github.com/mailpile/Mailpile.git \
         --branch $VERSION --single-branch --recursive
 
-WORKDIR /Mailpile
+WORKDIR $HOME/Mailpile
 
 # Install missing requirements
 RUN pip install -r requirements.txt
