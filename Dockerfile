@@ -5,6 +5,7 @@ ENV VERSION master
 
 # Install requirements
 RUN apk add --update-cache \
+        shadow \
         git \
         zlib \
         gnupg1 \
