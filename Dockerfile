@@ -48,7 +48,7 @@ RUN git clone https://github.com/mailpile/Mailpile.git \
 WORKDIR $HOME/Mailpile
 
 # Install missing requirements
-RUN pip install -r requirements.txt
+RUN pip install --user -r requirements.txt
 
 # Initial Mailpile setup
 RUN ./mp setup
